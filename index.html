@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leer Canva: Van Beginner tot Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7D2AE8;
+    --teal: #00C4CC;
+    --coral: #FF7262;
+    --dark: #2D3748;
+    --gray: #718096;
+    --light: #F5F5F5;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --beginner: #7D2AE8;
+    --gevorderd: #00C4CC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); line-height: 1.6; }
+  h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #7D2AE8 0%, #00C4CC 100%);
+    color: white;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: clamp(15px, 2vw, 19px);
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+  .hero-logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: white;
+    opacity: 0.15;
+    position: absolute;
+    bottom: -10px; right: 40px;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .progress-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: var(--light);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-pct {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple);
+    white-space: nowrap;
+  }
+
+  /* CONTAINER */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* INTRO */
+  .intro {
+    padding: 48px 24px 32px;
+    text-align: center;
+  }
+  .intro h2 { font-size: 26px; margin-bottom: 12px; color: var(--dark); }
+  .intro p { color: var(--gray); max-width: 680px; margin: 0 auto; font-size: 16px; }
+
+  /* LEVEL CARDS */
+  .level-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0 24px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) { .level-cards { grid-template-columns: 1fr; } }
+  .level-card {
+    border-radius: 16px;
+    padding: 28px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .level-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+  .level-card.beginner { background: linear-gradient(135deg, #7D2AE8, #9F5FF5); color: white; }
+  .level-card.gevorderd { background: linear-gradient(135deg, #00C4CC, #00A8B0); color: white; }
+  .level-card .card-icon { font-size: 36px; margin-bottom: 12px; }
+  .level-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .level-card p { opacity: 0.85; font-size: 14px; }
+  .level-card .card-count {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    padding: 16px 24px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-title h2 {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+  .badge-beginner { background: var(--purple); }
+  .badge-gevorderd { background: var(--teal); }
+
+  /* ACCORDION */
+  .accordion-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 8px;
+  }
+  .accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .accordion-item.visible { opacity: 1; transform: translateY(0); }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    background: var(--white);
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .accordion-header:hover { background: #FAFAFA; }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .step-num.beginner { background: var(--purple); }
+  .step-num.gevorderd { background: var(--teal); }
+
+  .accordion-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--dark);
+  }
+  .accordion-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .check-done {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #48BB78;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .check-done.visible { opacity: 1; }
+  .accordion-arrow {
+    font-size: 18px;
+    color: var(--gray);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #FAFAFA;
+    border-top: 1px solid transparent;
+  }
+  .accordion-item.open .accordion-body {
+    max-height: 700px;
+    border-top-color: var(--border);
+  }
+  .accordion-content { padding: 20px 20px 24px 70px; }
+  @media (max-width: 600px) { .accordion-content { padding: 16px; } }
+
+  .accordion-content p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #000;
+    margin-bottom: 16px;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    border-radius: 10px;
+  }
+  .mark-done-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: white;
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .mark-done-btn:hover { border-color: #48BB78; color: #48BB78; }
+  .mark-done-btn.done { background: #F0FFF4; border-color: #48BB78; color: #48BB78; }
+
+  /* TIPS */
+  .tips-section {
+    background: var(--light);
+    padding: 48px 24px;
+    margin-top: 40px;
+  }
+  .tips-section h2 { text-align: center; font-size: 22px; margin-bottom: 28px; }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .tip-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tip-icon { font-size: 28px; margin-bottom: 12px; }
+  .tip-card h4 { font-size: 15px; margin-bottom: 8px; }
+  .tip-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* PRINT */
+  .print-btn-wrap { text-align: center; padding: 32px 24px 8px; }
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #1A202C; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--gray);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer a { color: var(--purple); text-decoration: none; }
+
+  /* SCROLL ANIMATION */
+  @media (prefers-reduced-motion: reduce) {
+    .accordion-item { opacity: 1; transform: none; }
+  }
+
+  @media print {
+    .progress-bar-wrap, .print-btn-wrap, .video-wrap, .mark-done-btn { display: none; }
+    .accordion-body { max-height: none !important; }
+    .accordion-item { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🎨 Gratis Leerpad voor Leerkrachten</div>
+  <h1>Leer Canva:<br>Van Beginner tot Expert</h1>
+  <p>Een stap-voor-stap gids om Canva optimaal te gebruiken in je onderwijs — van je eerste ontwerp tot geavanceerde AI-functies.</p>
+  <div class="hero-logo">Canva</div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <div class="progress-inner">
+    <span class="progress-label">📊 Voortgang</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-pct" id="progressPct">0/16 voltooid</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro container">
+  <h2>Waarom Canva voor leerkrachten?</h2>
+  <p>Canva is een gratis, gebruiksvriendelijk ontwerpplatform waarmee je in minuten professioneel lesmateriaal, presentaties, posters en visuele hulpmiddelen maakt — zonder ontwerpervaring.</p>
+</div>
+
+<!-- LEVEL CARDS -->
+<div class="level-cards">
+  <a href="#beginners" class="level-card beginner">
+    <div class="card-count">7 stappen</div>
+    <div class="card-icon">🌱</div>
+    <h3>Canva voor Beginners</h3>
+    <p>Leer de basis: sjablonen, typografie, beeldkeuze en je eerste lesmateriaal maken.</p>
+  </a>
+  <a href="#gevorderden" class="level-card gevorderd">
+    <div class="card-count">9 stappen</div>
+    <div class="card-icon">🚀</div>
+    <h3>Canva voor Gevorderden</h3>
+    <p>Dieper gaan: Brand Kit, animaties, AI-functies en interactieve leerspellen.</p>
+  </a>
+</div>
+
+<!-- ===== BEGINNERS ===== -->
+<div class="section-title" id="beginners">
+  <h2>🌱 Canva voor Beginners <span class="section-badge badge-beginner">Stap 1–7</span></h2>
+</div>
+
+<div class="accordion-wrap" id="beginners-acc">
+
+  <div class="accordion-item" data-id="s1">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">1</div>
+      <div class="accordion-title">Kennismaking met Canva</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s1">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Ontdek de Canva-omgeving: het dashboard, de zoekfunctie, het bewerkingsscherm en de basisnavigatie. Je leert hoe je inlogt, een nieuw ontwerp start en de interface verkent. Na deze stap voel je je thuis in Canva.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/jzWxBuvwuwQ?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s1', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s2">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">2</div>
+      <div class="accordion-title">Basisontwerpprincipes</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s2">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Werk met sjablonen en leer de fundamenten van goed ontwerp: kleurgebruik, typografie, beeldkeuze en lay-out. Je ontdekt hoe je een sjabloon aanpast aan jouw noden en hoe je visueel aantrekkelijk lesmateriaal creëert dat meteen professioneel oogt.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/zite6MkgX4Y?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s2', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s3">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">3</div>
+      <div class="accordion-title">Lesmateriaal maken</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s3">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Ontwerp lesplannen en werkbladen in Canva. Je leert hoe je afbeeldingen en grafieken integreert, tekstvakken correct opmaakt en een coherent geheel maakt dat leerlingen aanspreekt. Perfect voor werkbladen, opdrachtenfiches en studiegidsen.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/Cug7RO0uaww?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s3', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s4">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">4</div>
+      <div class="accordion-title">Boeiende presentaties creëren</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s4">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Bouw aantrekkelijke presentatiedia's en voeg overgangen en animaties toe om je les levendiger te maken. Je leert hoe je de "Present"-modus gebruikt, notities toevoegt voor jezelf en je presentatie deelt met leerlingen via een link of PDF.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/206sc-0Dv4M?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s4', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s5">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">5</div>
+      <div class="accordion-title">Visuele hulpmiddelen ontwerpen</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s5">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Maak educatieve posters, flashcards en infographics die complexe informatie visueel en begrijpelijk maken. Je ontdekt hoe je grafieken, tijdlijnen en mindmaps maakt die leerlingen helpen om leerstof te onthouden en te begrijpen.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/36SIUe_mOZU?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s5', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s6">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">6</div>
+      <div class="accordion-title">Samenwerken en delen</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s6">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Leer hoe je werkt aan groepsprojecten en gemaakte content deelt met leerlingen en collega's. Je ontdekt de gedeelde werkruimtes, hoe je leerlingen uitnodigt om samen aan een ontwerp te werken en hoe je bestanden exporteert of deelt via een link.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/0dujqj2OZIo?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s6', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s7">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num beginner">7</div>
+      <div class="accordion-title">Praktische tips en tricks</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s7">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Ontdek tijd- en stressbesparende functies: sneltoetsen, de Magic Resize-functie, bulk exporteren en hoe je veelvoorkomende ontwerpproblemen snel oplost. Deze tips maken je workflow aanzienlijk sneller en efficiënter.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/pnzfWNWIZuU?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s7', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /beginners-acc -->
+
+<!-- ===== GEVORDERDEN ===== -->
+<div class="section-title" id="gevorderden" style="margin-top:32px;">
+  <h2>🚀 Canva voor Gevorderden <span class="section-badge badge-gevorderd">Stap 8–16</span></h2>
+</div>
+
+<div class="accordion-wrap" id="gevorderden-acc">
+
+  <div class="accordion-item" data-id="s8">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">8</div>
+      <div class="accordion-title">Geavanceerde lay-out en typografie</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s8">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Werk met rasters en frames voor perfecte uitlijning, experimenteer met gebogen tekst, transparantie en lagen. Je leert hoe je complexe lay-outs bouwt die eruitzien als professioneel grafisch ontwerp — ideaal voor schoolmagazines, brochures en displaymateriaal.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/ZzJHwbv4m7k?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s8', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s9">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">9</div>
+      <div class="accordion-title">Brand Kit en huisstijlbeheer</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s9">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Maak een Brand Kit met de kleuren, lettertypen en het logo van je school of klas. Zo ziet al je lesmateriaal er consistent en professioneel uit. Je leert hoe je een huisstijl opbouwt en bewerkt, en hoe je dit toepast op al je ontwerpen.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/8o9Xeha31J0?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s9', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s10">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">10</div>
+      <div class="accordion-title">Real-time samenwerken</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s10">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Deel ontwerpen in real-time en geef en ontvang feedback via opmerkingen. Perfect voor groepswerken waarbij leerlingen tegelijk aan hetzelfde ontwerp werken, of voor collega's die elkaars lesmateriaal reviewen en verbeteren met concrete suggesties.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/QD8_ccs8nR4?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s10', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s11">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">11</div>
+      <div class="accordion-title">Animaties en video</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s11">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Voeg animaties toe aan ontwerpen, pas de duur en het type aan (fade, bounce, typewriter…) en exporteer als MP4 of GIF. Ideaal voor digitale aankondigingen, korte instructievideo's of bewegende infographics op het digitale schoolbord.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/bfXatvgJ-00?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s11', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s12">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">12</div>
+      <div class="accordion-title">Apps en integraties</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s12">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Integreer externe apps zoals Pexels en Pixabay voor gratis stockfoto's en voeg QR-codes toe aan je ontwerpen. Je ontdekt de Canva Apps Marketplace met tientallen nuttige tools die je workflow verrijken, van grafieken tot interactieve elementen.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/jrlSSIQM75U?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s12', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s13">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">13</div>
+      <div class="accordion-title">Websites bouwen</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s13">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Maak een eenvoudige website met meerdere pagina's, inclusief animaties of ingebedde video's — rechtstreeks vanuit Canva, zonder codering. Ideaal als digitaal portfolio voor leerlingen, een klaspagina of een mini-website voor een schoolproject.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/vZlMtpH0qqM?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s13', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s14">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">14</div>
+      <div class="accordion-title">Sjablonen ontwerpen en delen</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s14">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Verander je beste ontwerpen in herbruikbare sjablonen die je deelt met collega's of leerlingen. Zo creëer je een consistente schoolstijl en bespaar je iedereen tijd. Je leert ook hoe je sjablonen publiceert in de Canva-bibliotheek van je school.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/Z1J2BR4d7Sw?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s14', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s15">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">15</div>
+      <div class="accordion-title">AI-functies in Canva</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s15">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Ontdek de AI-tools van Canva: Magic Write (tekst genereren), Magic Design (ontwerp op basis van een beschrijving), Background Remover en Magic Edit. Je leert hoe je sneller en slimmer ontwerpt dankzij kunstmatige intelligentie als creatieve assistent.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/x1stz2wJMVM?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s15', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-id="s16">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="step-num gevorderd">16</div>
+      <div class="accordion-title">Interactieve leerspellen</div>
+      <div class="accordion-meta">
+        <span class="check-done" id="done-s16">✅ Afgerond</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Creëer boeiende en interactieve spellen in Canva om het leren te bevorderen: quiz-presentaties, interactieve werkbladen en gamified leeractiviteiten. Je combineert alles wat je hebt geleerd om een rijke, actieve leerervaring te ontwerpen voor je leerlingen.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/xoni8jC5avA?rel=0&modestbranding=1" title="Canva tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <button class="mark-done-btn" onclick="markDone('s16', this)">☐ Markeer als afgerond</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /gevorderden-acc -->
+
+<!-- TIPS -->
+<div class="tips-section">
+  <div class="container">
+    <h2>💡 Praktische tips voor leerkrachten</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🎓</div>
+        <h4>Canva for Education</h4>
+        <p>Vraag een gratis Canva for Education-account aan als leerkracht. Je krijgt toegang tot premium functies, klassen aanmaken en leerlingenbeheer — volledig gratis.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⌨️</div>
+        <h4>Handige sneltoetsen</h4>
+        <p>Gebruik <strong>T</strong> voor tekst, <strong>R</strong> voor rechthoek, <strong>C</strong> voor cirkel en <strong>Ctrl+D</strong> om elementen te dupliceren. Dit versnelt je workflow enorm.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📱</div>
+        <h4>Canva-app op je tablet</h4>
+        <p>De Canva-app op iPad of Android werkt uitstekend in de klas. Leerlingen kunnen er direct mee aan de slag op hun eigen toestel, ook zonder laptop.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT BUTTON -->
+<div class="print-btn-wrap">
+  <button class="print-btn" onclick="window.print()">🖨️ Afdrukken / Opslaan als PDF</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Gemaakt voor leerkrachten | <a href="#">ICT-advies</a> &nbsp;·&nbsp; Vragen? <a href="mailto:info@ict-advies.be">Neem contact op</a></p>
+</footer>
+
+<script>
+  const TOTAL = 16;
+
+  // --- Accordion ---
+  function toggle(header) {
+    const item = header.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // --- Mark done ---
+  function markDone(id, btn) {
+    const isDone = btn.classList.toggle('done');
+    btn.textContent = isDone ? '✅ Afgerond' : '☐ Markeer als afgerond';
+    localStorage.setItem('canva_' + id, isDone ? '1' : '0');
+    const badge = document.getElementById('done-' + id);
+    if (badge) badge.classList.toggle('visible', isDone);
+    updateProgress();
+  }
+
+  // --- Progress ---
+  function updateProgress() {
+    let done = 0;
+    for (let i = 1; i <= TOTAL; i++) {
+      if (localStorage.getItem('canva_s' + i) === '1') done++;
+    }
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = done + '/' + TOTAL + ' voltooid';
+  }
+
+  // --- Restore state ---
+  function restoreState() {
+    for (let i = 1; i <= TOTAL; i++) {
+      const id = 's' + i;
+      if (localStorage.getItem('canva_' + id) === '1') {
+        const item = document.querySelector('[data-id="' + id + '"]');
+        if (!item) continue;
+        const btn = item.querySelector('.mark-done-btn');
+        if (btn) { btn.classList.add('done'); btn.textContent = '✅ Afgerond'; }
+        const badge = document.getElementById('done-' + id);
+        if (badge) badge.classList.add('visible');
+      }
+    }
+    updateProgress();
+  }
+
+  // --- Scroll animations ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.accordion-item').forEach(el => observer.observe(el));
+
+  // --- Smooth scroll ---
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  restoreState();
+</script>
+</body>
+</html>
