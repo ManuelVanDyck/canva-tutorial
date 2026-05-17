@@ -7,24 +7,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --purple: #7D2AE8;
-    --teal: #00C4CC;
-    --coral: #FF7262;
+    --purple: #e53013;
+    --teal: #4c8077;
+    --coral: #f7931e;
     --dark: #2D3748;
     --gray: #718096;
-    --light: #F5F5F5;
+    --light: #fdf0e4;
     --white: #FFFFFF;
     --border: #E2E8F0;
-    --beginner: #7D2AE8;
-    --gevorderd: #00C4CC;
+    --beginner: #e53013;
+    --gevorderd: #4c8077;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); line-height: 1.6; }
+  body { font-family: 'Inter', sans-serif; color: var(--dark); background: #fee4cc; line-height: 1.6; }
   h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #7D2AE8 0%, #00C4CC 100%);
+    background: linear-gradient(135deg, #e53013 0%, #4c8077 100%);
     color: white;
     padding: 80px 24px 60px;
     text-align: center;
@@ -100,13 +100,13 @@
   .progress-track {
     flex: 1;
     height: 8px;
-    background: var(--light);
+    background: #fdf0e4;
     border-radius: 4px;
     overflow: hidden;
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--purple), var(--teal));
+    background: linear-gradient(90deg, #e53013, #4c8077);
     border-radius: 4px;
     transition: width 0.4s ease;
     width: 0%;
@@ -150,8 +150,8 @@
     overflow: hidden;
   }
   .level-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
-  .level-card.beginner { background: linear-gradient(135deg, #7D2AE8, #9F5FF5); color: white; }
-  .level-card.gevorderd { background: linear-gradient(135deg, #00C4CC, #00A8B0); color: white; }
+  .level-card.beginner { background: linear-gradient(135deg, #e53013, #f7931e); color: white; }
+  .level-card.gevorderd { background: linear-gradient(135deg, #4c8077, #3a6560); color: white; }
   .level-card .card-icon { font-size: 36px; margin-bottom: 12px; }
   .level-card h3 { font-size: 20px; margin-bottom: 8px; }
   .level-card p { opacity: 0.85; font-size: 14px; }
@@ -313,7 +313,7 @@
 
   /* TIPS */
   .tips-section {
-    background: var(--light);
+    background: #fdf0e4;
     padding: 48px 24px;
     margin-top: 40px;
   }
